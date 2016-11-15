@@ -1,0 +1,21 @@
+@RELATION temp
+@ATTRIBUTE price {vh=,h=,pm=,l=,vl=}
+@ATTRIBUTE distance {vf=,f=,dm=,n=,vn=}
+@ATTRIBUTE class {select,nonselect}
+@DATA
+vl=, vn=,select
+vl=, n=,select
+l=, n=,select
+l=, dm=,select
+pm=, f=,select
+vl=, f=,select
+vl=, f=,select
+pm=, vn=,select
+vh=,vn=,nonselect
+vh=,f=,nonselect
+h=,f=,nonselect
+pm=,f=,nonselect
+h=,dm=,nonselect
+vh=,vn=,nonselect
+vh=,vn=,nonselect
+pm=,vf=,nonselect
