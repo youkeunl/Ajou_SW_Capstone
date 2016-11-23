@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<script>
+	function logincheck(){
+		if(document.loginForm.id.value==""){
+			alert("아이디를 입력하세요");
+			document.loginForm.id.focus();
+		} else if(document.loginForm.pass.value==""){
+			alert("비밀번호를 입력하세요")
+			document.loginForm.pass.focus();
+		} else{
+			document.loginForm.submit();
+		}
+	}
+</script>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<title>펫 맘 로그인</title>
+		<meta name="generator" content="Bootply" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link href="/priends/WebContent/css/bootstrap.min.css" rel="stylesheet">
+		<!--[if lt IE 9]>
+			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<link href="/priends/WebContent/css/styles.css" rel="stylesheet">
+	</head>
+	<body>
+<!--login modal-->
+
+<div id="loginModal" class="modal show" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+  <div class="modal-content">
+      <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h1 class="text-center">펫 맘 로그인</h1>
+         
+    
+      </div>
+      <div class="modal-body">
+          <form class="form col-md-12 center-block" name="loginForm" action="/priends/WebContent/log/loginProc.jsp" method="post">
+            <div class="form-group">
+              <input type="text" class="form-control input-lg" name="id" placeholder="아이디">
+            </div>
+            <div class="form-group">
+              <input type="password" class="form-control input-lg" name="pass" placeholder="비밀번호">
+            </div>
+            <div class="form-group">
+              <button class="btn btn-primary btn-lg btn-block">로그인</button>
+              <span class="pull-right"><a href="/priends/WebContent/member/regForm.jsp">회원가입</a></span><span><a href="">Need help?</a></span>
+            </div>
+          </form>
+      </div>
+      <div class="modal-footer">
+          <div class="col-md-12">
+          <button class="btn" data-dismiss="modal" aria-hidden="true" onclick="location.href='/index.html'">Cancel</button>
+		  </div>	
+      </div>
+  </div>
+  </div>
+</div>
+
+	<!-- script references -->
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+		<script src="/priends/WebContent/js/bootstrap.min.js"></script>
+	</body>
+</html>

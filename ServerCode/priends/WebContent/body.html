@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+<title>검색페이지</title>
+</head>
+<body>
+<div class="container" style="float:middle;">
+<form action="list.jsp" method="post">        
+
+  <div class="row-fluid">
+  
+    <h4><i class="icon-plus-sign-alt"></i> 검색 조건 선택하기</h4>
+    
+      <span class="input-group">
+                        
+                        산책<input type="checkbox" name="chk_info" value="산책">
+                        병원<input type="checkbox" name="chk_info" value="병원">
+                        미용<input type="checkbox" name="chk_info" value="미용">
+                        간식<input type="checkbox" name="chk_info" value="간식">
+                        목욕<input type="checkbox" name="chk_info" value="목욕">
+                        상관 없음<input type="checkbox" name="chk_info" value="상관 없음">&nbsp
+                        <input type="hidden"><span>날짜 선택 </span>
+                        <select name="selectbasic" class="selectpicker" id="selectbasic">
+     		 			<option selected value="all">달력 넣을 예정</option>
+         	 			<option value="health">1</option>
+          				<option value="food">2</option>
+          				<option value="movie">3</option>
+          				<option value="book">4</option>
+          				<option value="qualification">5</option>
+         				<option value="travel">6</option>
+         	 			<option value="etc">7</option>
+        				</select>
+                        <span class="input-group-btn">
+                        	
+                            <button class="btn btn-default" type="button" onclick="location.href='/priends/WebContent/list.jsp'">
+                               <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                        </span>
+             </span>
+      <hr>
+    </div>
+  
+  </form>
+</div><!--/.container-->
+</body>
+</html>
