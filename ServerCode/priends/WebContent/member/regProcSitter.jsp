@@ -15,6 +15,8 @@
 	dto.setJob(request.getParameter("job"));
 	dto.setSex(request.getParameter("sex"));
 	dto.setAddress(request.getParameter("address"));
+	dto.setPrice_day(Integer.parseInt(request.getParameter("price_day")));
+	dto.setPrice_night(Integer.parseInt(request.getParameter("price_night")));
 	
 	int n = dao.insertOne(dto);
 	
@@ -23,11 +25,11 @@
 %>
 	<script>
 		alert("회원 가입 완료~");
-		location.href="/loginSitter.html";
+		location.href="/priends/WebContent/loginSitter.html";
 	</script>
 <%} else { %>
 	<script>
 		alert("가입 실패...");
-		location.href="/priends/WebContent/member/regFormSitter.jsp";
+		location.href="/priends/WebContent/regFormSitter.html";
 	</script>
 <%} %>	

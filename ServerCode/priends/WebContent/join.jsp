@@ -2,10 +2,16 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
-	String top = "/priends/WebContent/top.jsp";
+	String top = "/priends/WebContent/top.html";
 	//String top = "/top.jsp";
 	String main = (String)request.getAttribute("main");
-	
+	String service = (String)request.getAttribute("service2");
+	if(service!=null){
+	request.setAttribute("service2",service);
+	}
+	else{
+		request.setAttribute("service2","1000000");
+	}
 
 %>
 <html>

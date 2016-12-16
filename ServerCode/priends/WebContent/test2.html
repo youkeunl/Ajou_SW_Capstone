@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script>
+function getQuerystring(paramName){
+
+	var _tempUrl = window.location.search.substring(1); //url에서 처음부터 '?'까지 삭제
+	var _tempArray = _tempUrl.split('&'); // '&'을 기준으로 분리하기
+	
+	
+	for(var i = 0; _tempArray.length; i++) {
+		var _keyValuePair = _tempArray[i].split('='); // '=' 을 기준으로 분리하기
+		
+		if(_keyValuePair[0] == paramName){ // _keyValuePair[0] : 파라미터 명
+			// _keyValuePair[1] : 파라미터 값
+			return _keyValuePair[1];
+		}
+	}
+}
+var name = getQuerystring("name");
+
+console.log(getQuerystring('name'))  // --> 'hyewon' 출력
+console.log(getQuerystring('age'))  // --> '25' 출력
+</script>
+
+<script>request.getParameter("name")</script>
+<script>getQuerystring("name")</script>
+<input type="button" value="&{name};">
+<script>document.write(getQuerystring("name"));</script>
+</body>
+</html>

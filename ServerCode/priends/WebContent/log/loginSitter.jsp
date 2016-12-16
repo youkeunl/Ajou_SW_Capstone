@@ -15,6 +15,7 @@
 <body>
 	<%if(dto != null && pass.equals(dto.getPetSitter_Pwd())){
 		session.setAttribute("memId", id);
+		session.setAttribute("type","sitter");
 		%>
 		<script>
 			alert("<%=session.getAttribute("memId")%>님 반갑습니다.");

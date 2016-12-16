@@ -1,14 +1,29 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+<!DOCTYPE html>
+<html lang="en">
+  
+  <head>
 
-<title>회원가입</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>회원가입 페이지</title>
 
-<script>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- font awesome -->
+    <link rel="stylesheet" href="css/font-awesome.min.css" media="screen" title="no title" charset="UTF-8">
+    <!-- Custom style -->
+    <link rel="stylesheet" href="css/style.css" media="screen" title="no title" charset="UTF-8">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
 	function checkId() {
 		var id = document.regform.id.value;
 		
@@ -34,192 +49,155 @@
 			document.regform.submit();
 	}
 </script>
+  </head>
+  <body>
 
-</head>
-<body>
-	<form name="regform" method="post" action="/priends/WebContent/member/regProc.jsp">
-	<h4 align="center">펫 맘 회원가입</h4>
-	<hr color="black">
-	<table border="2" cellpadding="5" align="center">
-		<tr>
-			<td align="center">이름</td>
-			<td>
-			<input type="text"  name="name">
-			</td>
-		</tr>
-		
-		<tr>
-			<td align="center">아이디</td>
-			<td>
-			<input type="text" name="id">
-			<input type="button" value="중복체크" 
-			onclick="javascript:checkId()">
-			</td>
-		</tr>
-		
-		<tr>
-			<td align="center">비밀번호</td>
-			<td>
-			<input type="password" name="pass">
-			</td>
-		</tr>
-		
-		<tr>
-			<td align="center">비밀번호 재확인</td>
-			<td>
-			<input type="password" name="repass">
-			</td>
-		</tr>
-		
-		<tr>
-			<td align="center">성별</td>
-			<td>
-			<input type="text" name="sex">
-			</td>
-		</tr>
-		
-		<tr>
-			<td align="center">직업</td>
-			<td>
-			<input type="text" name="job">
-			</td>
-		</tr>
-		
-		<tr>
-			<td align="center">나이</td>
-			<td>
-			<input type="text" name="age">
-			</td>
-		</tr>
-		
-		<tr>
-			<td align="center">주소</td>
-			<td>
-			<input type="text" name="address">
-			</td>
-		</tr>
-		<!--펫 정보  -->
-		<tr>
-			<td align="center">펫 이름</td>
-			<td>
-			<input type="text" name="pet_name">
-			</td>
-		</tr>
-		<tr>
-			<td align="center">펫 종류</td>
-			<td>
-			<input type="text" name="pet_species">
-			</td>
-		</tr>
-			<tr>
-			<td align="center">펫 나이</td>
-			<td>
-			<input type="text" name="pet_age">
-			</td>
-		</tr>
-			<tr>
-			<td align="center">펫 특징</td>
-			<td>
-			<input type="text" name="pet_character">
-			</td>
-		</tr>
-		
-			<tr>
-			<td align="center">펫 건강 상태</td>
-			<td>
-			<input type="text" name="pet_health">
-			</td>
-		</tr>
-		
-		<tr>
-			<td colspan="2" align="center">
-			<input class="btn btn-default" type="button" value="회원가입" 
-			onclick="javascript:checking()">
-			<input class="btn btn-default" type="reset" value="다시작성">
-			<input class="btn btn-default" type="button" onclick="location.href='/index.html'"value="메인으로">
-			</td>
-		</tr>
+      <article class="container">
+       
+        <div class="col-md-12">
+        <div class="page-header">
+    	    <h1>펫 맘 회원가입 </h1>
+        </div>
+        <form name="regform" class="form-horizontal" action="/priends/WebContent/member/regProc.jsp" method="post">
+        <div class="form-group">
+            <label class="col-sm-3 control-label" for="inputName">이름</label>
+          <div class="col-sm-6">
+            <input name="name" class="form-control" id="inputName" type="text" placeholder="이름">
+          </div>
+        </div>
+        
+        
+			
+			 <div class="form-group">
+            <label class="col-sm-3 control-label" for="inputName">아이디</label>
+          <div class="col-sm-6">
+            <input name="id" class="form-control" id="inputName" type="text" placeholder="아이디">
+            
+          </div>
+          <input type="button" value="중복체크" onclick="javascript:checkId()">
+        </div>
+       
+        <div class="form-group">
+          <label class="col-sm-3 control-label" for="inputPassword">비밀번호</label>
+        <div class="col-sm-6">
+          <input name="pass" class="form-control" id="inputPassword" type="password" placeholder="비밀번호">
+        
+        </div>
+        </div>
+          <div class="form-group">
+              <label class="col-sm-3 control-label" for="inputPasswordCheck">비밀번호 확인</label>
+             <div class="col-sm-6">
+              <input name="repass" class="form-control" id="inputPasswordCheck" type="password" placeholder="비밀번호 확인">
+                <p class="help-block">비밀번호를 한번 더 입력해주세요.</p>
+             </div>
+          </div>
+          
+          <div class="form-group">
+            <label class="col-sm-3 control-label" for="inputNumber">성별</label>
+              <div class="col-sm-6">
+                <div class="input-group">
+                  <input type="radio" name="sex" value="남"/>남
+                  <input type="radio" name="sex" value="여" checked="checked"/>여
+                </div>
+              </div>
+        </div>
+       
+        <div class="form-group">
+            <label class="col-sm-3 control-label" for="inputNumber">직업</label>
+              <div class="col-sm-6">
+                <div class="input-group">
+                  <input name = "job" type="text" class="form-control" id="inputNumber" placeholder="직업" />
+                </div>
+              </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label" for="inputNumberCheck">나이</label>
+          <div class="col-sm-6">
+            <div class="input-group">
+                <input name = "age" type="text" class="form-control" id="inputNumber" placeholder="숫자로 입력 하세요." />
+       
+            </div>
+      
+          </div>
+        </div>
+        
+        
+        <div class="form-group">
+            <label class="col-sm-3 control-label" for="inputName">주소</label>
+          <div class="col-sm-6">
+            <input name="address" class="form-control" id="inputName" type="text" placeholder="주소를 입력 하세요.">
+          </div>
+        </div>
+        
+         <div class="page-header">
+    	    <h1>펫 정보 </h1>
+        </div>
+        
+        <div class="form-group">
+            <label class="col-sm-3 control-label" for="inputNumberCheck">펫 이름</label>
+          <div class="col-sm-6">
+            <div class="input-group">
+                <input name = "pet_name" type="text" class="form-control" id="inputNumber" placeholder="펫 이름" />
+            </div>
+      
+          </div>
+        </div>
+        
+        <div class="form-group">
+            <label class="col-sm-3 control-label" for="inputNumberCheck">펫 종류</label>
+          <div class="col-sm-6">
+            <div class="input-group">
+                <input name = "pet_species" type="text" class="form-control" id="inputNumber" placeholder="펫 종류" />
+            </div>
+      
+          </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label" for="inputNumberCheck">펫 나이</label>
+          <div class="col-sm-6">
+            <div class="input-group">
+                <input name = "pet_age" type="text" class="form-control" id="inputNumber" placeholder="펫 나이 (숫자로 입력)" />
+            </div>
+      
+          </div>
+        </div>
+        
+        <div class="form-group">
+            <label class="col-sm-3 control-label" for="inputNumberCheck">펫 특징</label>
+          <div class="col-sm-6">
+            <div class="input-group">
+                <input name = "pet_character" type="text" class="form-control" id="inputNumber" placeholder="펫 특징" />
+            </div>
+      
+          </div>
+        </div>
+        
+        <div class="form-group">
+            <label class="col-sm-3 control-label" for="inputNumberCheck">펫 건강 상태</label>
+          <div class="col-sm-6">
+            <div class="input-group">
+                <input name = "pet_health" type="text" class="form-control" id="inputNumber" placeholder="펫 건강 상태" />
+            </div>
+      
+          </div>
+        </div>
+          
+        <div class="form-group">
+          <div class="col-sm-12 text-center">
+            <button class="btn btn-primary" type="button" value="회원가입" 
+			onclick="javascript:checking()">회원가입<i class="fa fa-check spaceLeft"></i></button>
+            <input class="btn btn-default" type="reset" value="다시작성">
+			<!-- <button class="btn btn-primary" type="submit">회원가입<i class="fa fa-check spaceLeft"></i></button> -->
+            <button class="btn btn-danger" type="button" onclick="location.href='/wp/'">가입취소<i class="fa fa-times spaceLeft"></i></button>
+          </div>
+        </div>
+        </form>
+          </div>
+      </article>
 
-	</table>
-	</form>
-	<div class="ufbl-form-wrapper ufbl-default-template" style="width:100%;">
-    <form method="post" action="" class="ufbl-front-form">
-		<div class="ufbl-form-title">회원 가입</div>				<input type="hidden" name="form_id" value="1" class="form-id"/>
-								<div class="ufbl-form-field-wrap " >
-							<label>이름</label>
-							<div class="ufbl-form-field">
-								<input type="text" name="ufbl_field_1" class="ufbl-form-textfield " data-max-chars="" data-min-chars="" data-error-message="" placeholder="이름을 입력해주세요." value=""/>
-								<div class="ufbl-error"  data-error-key="ufbl_field_1"></div>
-							</div>
-						</div>	
-												<div class="ufbl-form-field-wrap id" id="id">
-							<label>아이디</label>
-							<div class="ufbl-form-field">
-								<input type="text" name="ufbl_field_17" class="ufbl-form-textfield ufbl-required" data-max-chars="" data-min-chars="" data-error-message="" placeholder="사용 가능한 아이디를 입력해주세요." value=""/>
-								<div class="ufbl-error"  data-error-key="ufbl_field_17"></div>
-							</div>
-						</div>	
-												<div class="ufbl-form-field-wrap pass" id="pass">
-							<label>비밀번호</label>
-							<div class="ufbl-form-field">
-								<input type="password" name="ufbl_field_24" class="ufbl-form-password ufbl-required" data-max-chars="" data-min-chars="" data-error-message="" placeholder="비밀번호를 입력하세요"/>
-								<div class="ufbl-error"  data-error-key="ufbl_field_24"></div>
-							</div>
-						</div>	
-												<div class="ufbl-form-field-wrap email" >
-							<label>이메일</label>
-							<div class="ufbl-form-field">
-								<input type="email" name="ufbl_field_13" class="ufbl-email-field " data-error-message="" placeholder="이메일 주소를 입력해주세요." value=""/>
-								<div class="ufbl-error"  data-error-key="ufbl_field_13"></div>
-							</div>
-						</div>
-												<div class="ufbl-form-field-wrap repass" id="repass">
-							<label>비밀번호 중복확인</label>
-							<div class="ufbl-form-field">
-								<input type="password" name="ufbl_field_25" class="ufbl-form-password ufbl-required" data-max-chars="" data-min-chars="" data-error-message="" placeholder="비밀번호를 입력하세요."/>
-								<div class="ufbl-error"  data-error-key="ufbl_field_25"></div>
-							</div>
-						</div>	
-												<div class="ufbl-form-field-wrap sex" id="sex">
-							<label>성별</label>
-							<div class="ufbl-form-field">
-																		<div class="ufbl-sub-field-wrap"><input type="radio" value="남" name="ufbl_field_29" class="ufbl-form-radio ufbl-required" id="1-ufbl_field_29-0"/><label for="1-ufbl_field_29-0">남</label></div>
-																				<div class="ufbl-sub-field-wrap"><input type="radio" value="여" name="ufbl_field_29" class="ufbl-form-radio ufbl-required" id="1-ufbl_field_29-1"/><label for="1-ufbl_field_29-1">여</label></div>
-																		<div class="ufbl-error"  data-error-key="ufbl_field_29"></div>
-							</div>
-						</div>
-												<div class="ufbl-form-field-wrap job" id="job">
-							<label>직업</label>
-							<div class="ufbl-form-field">
-								<input type="text" name="ufbl_field_27" class="ufbl-form-textfield ufbl-required" data-max-chars="" data-min-chars="" data-error-message="" placeholder="ex)학생, 회사원" value=""/>
-								<div class="ufbl-error"  data-error-key="ufbl_field_27"></div>
-							</div>
-						</div>	
-												<div class="ufbl-form-field-wrap age" id="age">
-							<label>나이</label>
-							<div class="ufbl-form-field">
-								<input type="text" name="ufbl_field_26" class="ufbl-form-textfield ufbl-required" data-max-chars="3" data-min-chars="1" data-error-message="숫자를 입력 하세요." placeholder="나이를 입력하세요" value=""/>
-								<div class="ufbl-error"  data-error-key="ufbl_field_26"></div>
-							</div>
-						</div>	
-												<div class="ufbl-form-field-wrap address" id="address">
-							<label>주소</label>
-							<div class="ufbl-form-field">
-								<input type="text" name="ufbl_field_28" class="ufbl-form-textfield ufbl-required" data-max-chars="100" data-min-chars="" data-error-message="주소를 입력하세요." placeholder="주소를 입력하세요." value=""/>
-								<div class="ufbl-error"  data-error-key="ufbl_field_28"></div>
-							</div>
-						</div>	
-												<div class="ufbl-form-field-wrap " >
-							<div class="ufbl-form-field">
-								<input type="submit" class="ufbl-form-submit" name="ufbl_field_15" value="회원가입"/>
-																<span class="ufbl-form-loader" style="display:none"></span>
-							</div>
-						</div>
-								<div class="ufbl-form-message" style="display: none;"></div>
-
-			</form>
-
-</div>
-
-</body>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+  </body>
 </html>

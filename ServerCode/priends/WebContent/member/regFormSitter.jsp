@@ -37,7 +37,7 @@
 
 </head>
 <body>
-	<form name="regformsitter" method="post" action="/priends/WebContent/member/regProcSitter.jsp">
+	<form name="regformsitter" method="get" action="/priends/WebContent/member/regProcSitter.jsp">
 	<h4 align="center">펫 시터 회원가입</h4>
 	<hr color="black">
 	<table border="2" cellpadding="5" align="center">
@@ -96,6 +96,20 @@
 			<td align="center">주소</td>
 			<td>
 			<input type="text" name="address">
+			</td>
+		</tr>
+		
+		<tr>
+			<td align="center">Price (Day)</td>
+			<td>
+			<input type="text" name="price_day">
+			</td>
+		</tr>
+		
+		<tr>
+			<td align="center">Price (1 Night)</td>
+			<td>
+			<input type="text" name="price_night">
 			</td>
 		</tr>
 

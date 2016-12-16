@@ -9,6 +9,7 @@
 	
 	PetMomDAO dao = new PetMomDAO();
 	PetMomDTO dto = dao.selectOne(id);
+	
 %>
 <html>
 <head>
@@ -16,6 +17,7 @@
 <%=id %> ,<%=pass %>
 	<%if(dto != null && pass.equals(dto.getPetMom_Pwd())){
 		session.setAttribute("memId", id);
+		session.setAttribute("type","mom");
 		%>
 		<script>
 			alert("<%=session.getAttribute("memId")%>님 반갑습니다.");

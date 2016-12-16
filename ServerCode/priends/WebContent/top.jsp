@@ -67,13 +67,16 @@
                         <a href="/priends/WebContent/calendar.jsp">SCHEDULER</a>
                     </li>
                     <li>
-                        <a href="/priends/WebContent//menu.jsp">MY INFORMATION</a>
+                        <a href="/priends/WebContent/menu.jsp">MY INFORMATION</a>
                     </li>
                     <li>
-                        <a href="/priends/WebContent//menu.jsp">MASSENGER</a>
+                        <a href="/priends/WebContent/menu.jsp">MASSENGER</a>
                     </li>
                     <li>
-                        <a href="/priends/WebContent//login.html">logout</a>
+                        <a href="/wp/">logout</a>
+                    </li>
+                    <li>
+                    <%=session.getAttribute("memId")%>님 로그인 중입니다.
                     </li>
                     
                 </ul>

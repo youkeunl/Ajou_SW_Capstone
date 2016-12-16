@@ -1,104 +1,284 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<%@ page import="work.board.*" %>
-<%@ page import="work.img.*" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+<%@ page import="priends.work.*" %>
 <%@ page import="java.util.*" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Insert title here</title>
-</head>
-<%-- <%
-String select = request.getParameter("selectbasic");
-String search = request.getParameter("search");
-BoardDAO dao = new BoardDAO();
-BoardDTO dto = new BoardDTO();
-ImgDAO img_dao = new ImgDAO();
-ImgDTO img_dto = new ImgDTO();
 
-ArrayList<BoardDTO> b_list = new ArrayList<BoardDTO>();
-ArrayList<ImgDTO> i_list = new ArrayList<ImgDTO>();
-b_list = dao.selectAll(select, search);
-for(int i=0;i<b_list.size();i++){
-	i_list.add(img_dao.selectOne(b_list.get(i).getImg_addr()));
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ë¦¬ìŠ¤íŠ¸ ì¶œë ¥</title>
+
+    <!-- This stylesheet contains specific styles for displaying the map
+         on this page. Replace it with your own styles as described in the
+         documentation:
+         https://developers.google.com/maps/documentation/javascript/tutorial -->
+    <!--<link rel="stylesheet" href="/maps/documentation/javascript/demos/demos.css"-->
+    <style type="text/css">
+      html, body { height: 100%; margin: 0; padding: 0; }
+      #map {height: 60%; width: 70%;}
+
+      img{
+        width: 60px;
+        height: 60px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        float: center;
+      }
+
+    </style>
+</head>
+<%
+
+PetSitterDAO dao = new PetSitterDAO();
+PetSitterDTO dto = new PetSitterDTO();
+Main main = new Main();
+
+Object id = session.getAttribute("memId");
+String mom_id = (String)id;
+
+ArrayList<PetSitterDTO> list = new ArrayList<PetSitterDTO>();
+ArrayList<PetSitterDTO> d_list = new ArrayList<PetSitterDTO>();
+ArrayList<PetSitterDTO> p_list = new ArrayList<PetSitterDTO>();
+int type = 0;
+list = main.beforeSelect_price_day("M1","101111", "16-12-01" , "16-12-01");
+d_list = main.beforeSelect_price_distance("M1","110011", "16-12-01" , "16-12-01");
+p_list = main.beforeSelect_priority("M1","110011", "16-12-01" , "16-12-01");
+if(request.getParameter("type") != null){
+	type = Integer.parseInt(request.getParameter("type"));
 }
 
 
-//i_list.get(i).getLink() 
-
-%> --%>
+%>
 
 <body>
+  <br><br>
+    <div id="map" style ="margin: auto;"></div>
+    <script>
+// The following example creates complex markers to indicate beaches near
+// Sydney, NSW, Australia. Note that the anchor is set to (0,32) to correspond
+// to the base of the flagpole.
 
-
-    <div id="map" style="width:30%; height:30%"></div>
-    <script type="text/javascript">
-
-var map;
 function initMap() {
-  map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: 37.291634, lng: 127.04033},
-    zoom: 15
+  var petmom = {lat: 37.291634, lng: 127.04033};
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 13,
+    center: petmom
+  });
+  setMarkers(map);
+  var image_petmom = {
+    url: '/pmmap.png',
+    // This marker is 20 pixels wide by 32 pixels high./priensds/Webcontent/listForm.jsp
+    size: new google.maps.Size(52, 74),
+    // The origin for this image is (0, 0).
+    origin: new google.maps.Point(0, 0),
+    // The anchor for this image is the base of the flagpole at (0, 32).
+    anchor: new google.maps.Point(0, 32)
+  };
+
+  var contentString = '<div id="content">'+
+      '<div id="siteNotice">'+
+      '</div>'+
+      '<h3 id="firstHeading" class="firstHeading">PetMom1</h3>'+
+      '<div id="bodyContent">'+
+      '<p><b>Pet Mom ID: </b> <b>M1</b> :' +
+      ': í˜„ì¬ ë‚˜ì˜ ìœ„ì¹˜</p>'+
+      '<p><img src="/sample.jpg" width="300" height="150"> </p>'+
+      '</div>'+
+      '</div>';
+
+  var infowindow = new google.maps.InfoWindow({
+    content: contentString
+  });
+
+  var marker = new google.maps.Marker({
+    position: petmom,
+    map: map,
+    icon: image_petmom,
+    //draggable: true,
+    //info: content,
+    title: 'petmom'
+  });
+
+  marker.addListener('click', function() {
+    infowindow.open(map, marker);
+  });
+
+}
+
+// Data for the markers consisting of a name, a LatLng and a zIndex for the
+// order in which these markers should display on top of each other.
+
+var pet_sitters = [
+  ['petsitter1', 37.28424, 127.06934],
+  ['petsitter2', 37.330124, 127.139],
+  ['petsitter3', 37.259148, 127.06697],
+  ['petsitter4', 37.277996, 127.04411]
+];
+
+function setMarkers(map) {
+
+  var image = {
+    url: '/psmap.png',
+    // This marker is 20 pixels wide by 32 pixels high.
+    size: new google.maps.Size(52, 74),
+    // The origin for this image is (0, 0).
+    origin: new google.maps.Point(0, 0),
+    // The anchor for this image is the base of the flagpole at (0, 32).
+    anchor: new google.maps.Point(0, 32)
+  };
+
+  for (var i = 0; i < pet_sitters.length; i++) {
+    var pet_sitter = pet_sitters[i];
+    var marker = new google.maps.Marker({
+      position: {lat: pet_sitter[1], lng: pet_sitter[2]},
+      map: map,
+      icon: image,
+      //info: content,
+      title: pet_sitter[0]
+    });
+    markerListener(marker);
+  }
+}
+
+function markerListener(localmarker){
+  google.maps.event.addListener(localmarker, 'click', function(){
+    //ië²ˆì§¸ ë§ˆì»¤ í´ë¦­í–ˆì„ ë•Œ ì‹¤í–‰í•  ë‚´ìš©ë“¤
+    var contentString = '<div id="content">'+
+        '<div id="siteNotice">'+
+        '</div>'+
+        '<h3 id="firstHeading" class="firstHeading">PetSitter</h3>'+
+        '<div id="bodyContent">'+
+        '<p><b>Pet Sitter ID </b> <b>M1</b> :' +
+        ': PetSitterì…ë‹ˆë‹¤.</p>'+
+        '<p><img src="/sample.jpg" width="300" height="150"> </p>'+
+        '</div>'+
+        '</div>';
+
+    var infowindow = new google.maps.InfoWindow({
+      content: contentString
+    });
+
+    infowindow.open(map, localmarker);
   });
 }
 
-    </script>
-    <script async defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_mTC_yBsaEO3296b_p3QRi9lRMU7JO_c&callback=initMap">
-    </script>
-<p></p>
-<p></p>
-<p>Ã¹¹øÂ° ¹æ¹ı ÇÑ ÁÙ ¾¿ Ãâ·Â</p>
-<hr><p>pet sitter ÀÌ¸§ : ~~~ , °Å¸®:~~~~ , °¡°İ:~~~~~ Á¤º¸ ~~~~</p>
-<hr><p>pet sitter ÀÌ¸§ : ~~~ , °Å¸®:~~~~ , °¡°İ:~~~~~ Á¤º¸ ~~~~</p>
-<hr><p>pet sitter ÀÌ¸§ : ~~~ , °Å¸®:~~~~ , °¡°İ:~~~~~ Á¤º¸ ~~~~</p>
+</script>
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_mTC_yBsaEO3296b_p3QRi9lRMU7JO_c&callback=initMap">
+</script>
 <br>
-<hr>
-<p>µÎ¹øÂ° ¹æ¹ı</p>
-<div align="left">
-	<img id="" alt="" src="/priends/WebContent/image/sitter.jpg" style="width:10%; height:10%;">
-</div>
-<div align="center">
-	<img id="" alt="" src="/priends/WebContent/image/sitter.jpg" style="width:10%; height:10%;">
-</div>
-<div align="right">
-	<img id="" alt="" src="/priends/WebContent/image/sitter.jpg" style="width:10%; height:10%;">
-</div>
+<br>
 
-<%-- <% for(int i=0; i<b_list.size();i++){
-
-
-	//if(b_list.get(i).getCategory().equals(select)){
-%>
-		
-		<div class="container">
-    	<div class="row">
-    	<!--  ÀÌ¹ÌÁö ³Ö´Â ºÎºĞ-->
-            <div class="col-md-7">
-                <a href="">
-                    <img class="img-responsive" height="400" width="700" src="<%=b_list.get(i).getImg_addr()%>" alt="">
-                </a>
-            </div>
-            
-           <!--  ÀÌ¹ÌÁö ³Ö´Â ºÎºĞ-->
-            <div class="col-md-5">
-                <h3>Á¦¸ñ : <%=b_list.get(i).getTitle() %></h3>
-                <h4>ÀÛ¼ºÀÚ :<%=b_list.get(i).getWriter() %></h4>
-                <p>Ä«Å×°í¸® : <%=b_list.get(i).getCategory()%></p>
-                <a class="btn btn-primary" href="/WebReview/view.jsp?title=<%=b_list.get(i).getTitle()%>&writer=
-                <%=b_list.get(i).getWriter()%>&link=<%=b_list.get(i).getImg_addr()%>
-                &info=<%=i_list.get(i).getInfo()%>&content=<%=b_list.get(i).getContent()%>">View content<span class="glyphicon glyphicon-chevron-right"></span></a>
-            </div>
-        </div>
-
-        </div>
-
-<%//}
-
-}
-%>  --%>
+<table align = "center" text-align ="center">
+  <tr>
+    <td>
+      <a href ="http://www.priends.co.kr/priends/WebContent/image/matching.JPG">
+        <img src = "http://www.priends.co.kr/priends/WebContent/image/matching.JPG"/>
+      </a>
+      &nbsp;&nbsp;
+    </td>
+    <td width="20"></td>
+    <td>
+      <a href ="http://www.priends.co.kr/priends/WebContent/image/price_day.JPG">
+        <img src = "http://www.priends.co.kr/priends/WebContent/image/price_day.JPG"/>
+      </a>
+      &nbsp;&nbsp;
+    </td>
+    <td width="20"></td>
+    <td>
+      <a href ="http://www.priends.co.kr/priends/WebContent/image/price.JPG">
+        <img src = "http://www.priends.co.kr/priends/WebContent/image/price.JPG"/>
+      </a>
+      &nbsp;&nbsp;
+    </td>
+    <td width="20"></td>
+    <td>
+      <a href ="http://www.priends.co.kr/priends/WebContent/image/distance.JPG">
+        <img src = "http://www.priends.co.kr/priends/WebContent/image/distance.JPG"/>
+      </a>
+    </td>
+  </tr>
 
 
-</body>
+  <tr>
+    <td >
+      <strong> ì„ í˜¸ë„ìˆœ </strong>
+      &nbsp;&nbsp;
+    </td>
+    <td width="30"></td>
+    <td>
+      <strong> ê°€ê²©ìˆœ(1ì¼ ì´ë‚´) </strong>
+      &nbsp;&nbsp;
+    </td>
+    <td width="30"></td>
+    <td>
+      <strong> ê°€ê²©ìˆœ(1ë°• ì´ìƒ) </strong>
+      &nbsp;&nbsp;
+    </td>
+    <td width="30"></td>
+    <td>
+      <strong> ê±°ë¦¬ìˆœ </strong>
+    </td>
+  </tr>
+</table>
+
+<form action="/priends/WebContent/listProc.jsp"><input type="hidden" name="type" value="0"><input type="submit" value="ì¶”ì²œìˆœ"></form>
+<form action="/priends/WebContent/listProc.jsp"><input type="hidden" name="type" value="1"><input type="submit"  value="ê°€ê²©ìˆœ"></form>
+<form action="/priends/WebContent/listProc.jsp"><input type="hidden" name="type" value="2"><input type="submit"  value="ê±°ë¦¬ìˆœ"></form>
+
+<%=id %>
+<%
+if(type == 0){
+for(int i=0;i<p_list.size();i++){
+	%><form name="listForm" action="/priends/WebContent/testForm.html" method="get">
+	<hr>
+	<p>ì´ë¦„ : <%=p_list.get(i).getName() %> , ë‚˜ì´: <%=p_list.get(i).getAge() %>, ì£¼ì†Œ: <%=p_list.get(i).getAddress() %>,
+	day ê°€ê²©: <%=p_list.get(i).getPrice_day() %>, Night ê°€ê²©: <%=p_list.get(i).getPrice_night() %>
+	, X ì¢Œí‘œ :<%=p_list.get(i).getPoint_x() %> , Y ì¢Œí‘œ: <%=p_list.get(i).getPoint_y()%> , ê±°ë¦¬ : <%=p_list.get(i).getDistance()%>
+	<input type="hidden" name="name" value="<%=p_list.get(i).getName()%>">
+	<input type="hidden" name="age" value="<%=p_list.get(i).getAge()%>">
+	<input type="hidden" name="address" value="<%=p_list.get(i).getAddress()%>">
+	<input type="hidden" name="day" value="<%=p_list.get(i).getPrice_day()%>">
+	<input type="hidden" name="night" value="<%=p_list.get(i).getPrice_night()%>">
+	<input type="hidden" name="x_point" value="<%=p_list.get(i).getPoint_x()%>">
+	<input type="hidden" name="y_point" value="<%=p_list.get(i).getPoint_y()%>">
+	<input type="submit" value="ì •ë³´ ë³´ê¸°"></p></form>
+<%}}
+else if(type == 1){
+	for(int i=0;i<d_list.size();i++){
+		%><form name="listForm" action="/priends/WebContent/testForm.html" method="get">
+		<hr>
+		<p>ì´ë¦„ : <%=d_list.get(i).getName() %> , ë‚˜ì´: <%=d_list.get(i).getAge() %>, ì£¼ì†Œ: <%=d_list.get(i).getAddress() %>,
+		day ê°€ê²©: <%=d_list.get(i).getPrice_day() %>, Night ê°€ê²©: <%=d_list.get(i).getPrice_night() %>, ê±°ë¦¬ : <%=d_list.get(i).getDistance()%>
+		, X ì¢Œí‘œ :<%=d_list.get(i).getPoint_x() %> , Y ì¢Œí‘œ: <%=d_list.get(i).getPoint_y()%>
+		<input type="hidden" name="name" value="<%=d_list.get(i).getName()%>">
+		<input type="hidden" name="age" value="<%=d_list.get(i).getAge()%>">
+		<input type="hidden" name="address" value="<%=d_list.get(i).getAddress()%>">
+		<input type="hidden" name="day" value="<%=d_list.get(i).getPrice_day()%>">
+		<input type="hidden" name="night" value="<%=d_list.get(i).getPrice_night()%>">
+		<input type="hidden" name="x_point" value="<%=d_list.get(i).getPoint_x()%>">
+		<input type="hidden" name="y_point" value="<%=d_list.get(i).getPoint_y()%>">
+		<input type="submit" value="ì •ë³´ ë³´ê¸°"></p></form>
+	<%}}
+	else{
+	for(int i=0;i<list.size();i++){
+		%>
+		<form name="listForm" action="/priends/WebContent/testForm.html" method="get">
+	<hr>
+	<p>ì´ë¦„ : <%=list.get(i).getName() %> , ë‚˜ì´: <%=list.get(i).getAge() %>, ì£¼ì†Œ: <%=list.get(i).getAddress() %>,
+	day ê°€ê²©: <%=list.get(i).getPrice_day() %>, Night ê°€ê²©: <%=list.get(i).getPrice_night() %>, ê±°ë¦¬ : <%=list.get(i).getDistance()%>
+	, X ì¢Œí‘œ :<%=list.get(i).getPoint_x() %> , Y ì¢Œí‘œ: <%=list.get(i).getPoint_y()%>
+	<input type="hidden" name="name" value="<%=list.get(i).getName()%>">
+	<input type="hidden" name="age" value="<%=list.get(i).getAge()%>">
+	<input type="hidden" name="address" value="<%=list.get(i).getAddress()%>">
+	<input type="hidden" name="day" value="<%=list.get(i).getPrice_day()%>">
+	<input type="hidden" name="night" value="<%=list.get(i).getPrice_night()%>">
+	<input type="hidden" name="x_point" value="<%=list.get(i).getPoint_x()%>">
+	<input type="hidden" name="y_point" value="<%=list.get(i).getPoint_y()%>">
+	<input type="submit" value="ì •ë³´ ë³´ê¸°"></p></form>
+	<%}}%>
+  </body>
 </html>

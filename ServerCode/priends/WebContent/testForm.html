@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+    <title>펫 시터 정보</title>
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+   
+    <link rel="stylesheet" href="css/style.css" media="screen" title="no title" charset="UTF-8">
+	<Script>
+	function getQuerystring(paramName){
+
+		var _tempUrl = window.location.search.substring(1); //url에서 처음부터 '?'까지 삭제
+		var _tempArray = _tempUrl.split('&'); // '&'을 기준으로 분리하기
+		
+		
+		for(var i = 0; _tempArray.length; i++) {
+			var _keyValuePair = _tempArray[i].split('='); // '=' 을 기준으로 분리하기
+			
+			if(_keyValuePair[0] == paramName){ // _keyValuePair[0] : 파라미터 명
+				// _keyValuePair[1] : 파라미터 값
+				return _keyValuePair[1];
+			}
+		}
+	}
+	
+	function checking() {
+		
+			document.sitterForm.id.value = decodeURIComponent(getQuerystring('id'));
+			document.sitterForm.submit();
+	}
+	
+</Script>
+  </head>
+
+  <body>
+	
+	<div class="container">
+		<div class="card">
+			<div class="container-fliud">
+				<div class="wrapper row">
+					<div class="preview col-md-6">
+						
+						<div class="preview-pic tab-content">
+						  <div class="tab-pane active" id="pic-1"><img src="http://placekitten.com/400/252" /></div>
+						  <div class="tab-pane" id="pic-2"><img src="http://placekitten.com/400/252" /></div>
+						  <div class="tab-pane" id="pic-3"><img src="http://placekitten.com/400/252" /></div>
+						  <div class="tab-pane" id="pic-4"><img src="http://placekitten.com/400/252" /></div>
+						  <div class="tab-pane" id="pic-5"><img src="http://placekitten.com/400/252" /></div>
+						</div>
+						<ul class="preview-thumbnail nav nav-tabs">
+						  <li class="active"><a data-target="#pic-1" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
+						  <li><a data-target="#pic-2" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
+						  <li><a data-target="#pic-3" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
+						  <li><a data-target="#pic-4" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
+						  <li><a data-target="#pic-5" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
+						</ul>
+						
+					</div>
+					<div class="details col-md-6">
+						<h3 class="product-title">펫 시터 이름 :<script>document.write(decodeURIComponent(getQuerystring('name')));</script></h3>
+						<div class="rating">
+							<div class="stars">
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+							</div>
+							<span class="review-no">나이 : <script>document.write(decodeURIComponent(getQuerystring('age')));</script>세</span>
+						</div>
+						<p class="product-description">주소 : <script>document.write(decodeURIComponent(getQuerystring('address')));</script></p>
+						<p class="product-description">직업 : <script>document.write(decodeURIComponent(getQuerystring('job')));</script></p>
+						<h4 class="price">Day 가격  :<script>document.write(decodeURIComponent(getQuerystring('day')));</script></h4>
+						<h4 class="price">Night 가격  :<script>document.write(decodeURIComponent(getQuerystring('night')));</script></h4>
+						
+						<form action="/priends/WebContent/applyProc.jsp" name="sitterForm" id="sitterForm" method="get">
+						<input type="hidden" name="id" id="id" value="">
+					
+						<div class="action">
+							<button class="add-to-cart btn btn-default" type="button" onclick="javascript:checking()">신청하기</button>
+							<button class="like btn btn-default" type="button" onclick="location.href='/test.jsp'">뒤로 가기<span class="fa fa-heart"></span></button>
+						</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+  </body>
+</html>

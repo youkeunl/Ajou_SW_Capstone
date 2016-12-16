@@ -1,46 +1,71 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-		<meta charset="utf-8">
+ <meta http-equiv="Content-Language" content="ko">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>검색페이지</title>
+<script>
+function checked() {
+		if(document.bodyform.walk.checked==false&&document.bodyform.walk.checked==false&&document.bodyform.snack.checked==false&&document.bodyform.education.checked==false
+				&&document.bodyform.hospital.checked==false&&document.bodyform.pickup.checked==false&&document.bodyform.all.checked==false)
+			alert("서비스를 선택하세요.");
+		else if(document.bodyform.sDate.value==""||document.bodyform.eDate.value=="")
+			alert("날짜를 선택하세요");
+		
+		else{
+			var sdate = document.getElementById("sDate").value;
+			var edate = document.bodyform.eDate.value;
+			var subsdate = Number(sdate.substring(8,10));
+			var subedate = Number(edate.substring(8,10));
+			if(subsdate>subedate){
+				alert("종료일을 시작일 보다 늦게 선택하십시오.");
+			}
+			else{
+			document.bodyform.submit();
+			}
+		}
+	}
+</script>
 </head>
 <body>
 <div class="container" style="float:middle;">
-<form action="list.jsp" method="post">        
+<form name="bodyform" action="/priends/WebContent/list.jsp" method="get">        
 
   <div class="row-fluid">
   
     <h4><i class="icon-plus-sign-alt"></i> 검색 조건 선택하기</h4>
     
       <span class="input-group">
+                       
+                        샤워<input type="checkbox" name="shower" value="select">&nbsp&nbsp
+                        산책<input type="checkbox" name="walk" value="select">&nbsp&nbsp
+                        간식<input type="checkbox" name="snack" value="select">&nbsp&nbsp
+                        교육<input type="checkbox" name="education" value="select">&nbsp&nbsp
+                        병원<input type="checkbox" name="hospital" value="select">&nbsp&nbsp
+                        픽업<input type="checkbox" name="pickup" value="select">&nbsp&nbsp
+                        <input type="hidden" name="search" value="search">
+                        상관 없음<input type="checkbox" name="all" value="select">&nbsp&nbsp&nbsp
                         
-                        산책<input type="checkbox" name="chk_info" value="산책">
-                        병원<input type="checkbox" name="chk_info" value="병원">
-                        미용<input type="checkbox" name="chk_info" value="미용">
-                        간식<input type="checkbox" name="chk_info" value="간식">
-                        목욕<input type="checkbox" name="chk_info" value="목욕">
-                        상관 없음<input type="checkbox" name="chk_info" value="상관 없음">&nbsp
-                        <input type="hidden"><span>날짜 선택 </span>
-                        <select name="selectbasic" class="selectpicker" id="selectbasic">
-     		 			<option selected value="all">달력 넣을 예정</option>
-         	 			<option value="health">1</option>
-          				<option value="food">2</option>
-          				<option value="movie">3</option>
-          				<option value="book">4</option>
-          				<option value="qualification">5</option>
-         				<option value="travel">6</option>
-         	 			<option value="etc">7</option>
-        				</select>
+        				시작일<input type="text" id="sDate" name="sDate" onclick="fnPopUpCalendar(sDate,sDate,'yyyy-mm-dd')" class='text_box1'>&nbsp&nbsp
+        				종료일<input type="text" id="eDate" name="eDate" onclick="fnPopUpCalendar(eDate,eDate,'yyyy-mm-dd')" class='text_box1'>
+  						<script type="text/javascript" src="./calendar.js"></script>
                         <span class="input-group-btn">
                         	
-                            <button class="btn btn-default" type="button" onclick="location.href='/priends/WebContent/list.jsp'">
-                               <span class="glyphicon glyphicon-search"></span>
+                            <button class="btn btn-default" type="button" onclick="javascript:checked()">
+                            <span class="glyphicon glyphicon-search"></span>
                         </button>
                         </span>
              </span>
+             
+             
       <hr>
     </div>
+    <div style="margin:auto; width:100%" >
+    <img style="display:block; margin-left:auto; margin-right:auto;" src="http://www.priends.co.kr/priends/WebContent/image/service_menu.png" width="64%" height="40%">
+    
+    
+    </div>
+      
   
   </form>
 </div><!--/.container-->

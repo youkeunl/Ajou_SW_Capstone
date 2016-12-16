@@ -1,0 +1,211 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>펫 일지</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- font awesome -->
+    <link rel="stylesheet" href="css/font-awesome.min.css" media="screen" title="no title" charset="utf-8">
+    <!-- Custom style -->
+    <link rel="stylesheet" href="css/style.css" media="screen" title="no title" charset="utf-8">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <Script>
+	function getQuerystring(paramName){
+
+		var _tempUrl = window.location.search.substring(1); //url에서 처음부터 '?'까지 삭제
+		var _tempArray = _tempUrl.split('&'); // '&'을 기준으로 분리하기
+		
+		
+		for(var i = 0; _tempArray.length; i++) {
+			var _keyValuePair = _tempArray[i].split('='); // '=' 을 기준으로 분리하기
+			
+			if(_keyValuePair[0] == paramName){ // _keyValuePair[0] : 파라미터 명
+				// _keyValuePair[1] : 파라미터 값
+				return _keyValuePair[1];
+			}
+		}
+	}
+	
+	function checking() {
+		if(document.startform.ear_script.value=="")
+			alert("귀 상태를 입력하세요.");
+		else if(document.startform.eye_script.value=="")
+			alert("눈 상태를 입력하세요.");
+		else if(document.startform.skin_script.value=="")
+			alert("피부 상태를 입력하세요.");
+		else if(document.startform.teeth_script.value=="")
+			alert("치아 상태를 입력하세요.");
+		else if(document.startform.dung_script.value=="")
+			alert("변 상태를 입력하세요.");
+		else{
+			
+			document.startform.id.value = decodeURIComponent(getQuerystring('id'));
+			
+			document.startform.pet_sex.value = decodeURIComponent(getQuerystring('sex'));
+			
+			document.startform.pet_id.value = decodeURIComponent(getQuerystring('pet_id'));
+			
+			document.startform.submit();
+	}
+		
+	}
+	
+	</Script>
+  </head>
+  <body>
+		
+      <article class="container">
+        <div class="page-header">
+          <h1>Start 펫 일지 </h1>
+        </div>
+        <input type= "hidden" name="start" value="start">
+        <div class="col-md-6 col-md-offset-3">
+          <form name="startform" action="/priends/WebContent/reportStartProc.jsp">
+          <table width=100%;>
+          <tr>
+          <td>
+          <label for="InputEmail">
+          <input type="radio" name ="date" checked="checked"> 
+          	원나잇 (<script>document.write(decodeURIComponent(getQuerystring('start')));</script>~ 
+          	<script>document.write(decodeURIComponent(getQuerystring('end')));</script>)
+		  </label>
+		  </td>
+		  <td>
+		  <label for="InputEmail">
+		  <input type="radio" name="date"> 1Day 
+		  </label>
+		  </td>
+		  </tr>
+		  </table>
+		  <table width=100%;>
+		  <tr>
+		  <td><label for="InputEmail">펫 시터이름 : <script>document.write(decodeURIComponent(getQuerystring('petSitterID')));</script></label></td>
+		  <td><label for="InputEmail"></label></td>
+		  <td><label for="InputEmail"></label></td>
+		  </tr>
+		  <tr>
+		  <td><label for="InputEmail">강아지 이름 : <script>document.write(decodeURIComponent(getQuerystring('petname')));</script> </label>
+		 
+		  </td>
+		  <td><label for="InputEmail">강아지 성별 : <script>document.write(decodeURIComponent(getQuerystring('sex')));</script></label>
+		  <input type="hidden" name="pet_sex" value="">
+		  </td>
+		  <td><label for="InputEmail">펫 맘 이름 : <script>document.write(decodeURIComponent(getQuerystring('id')));</script></label></td>
+		  </tr>
+		  
+		  </table>
+		  <br>
+		  
+            <div class="form-group">
+              <label for="InputEmail">귓속 염증 없이 깨끗한지? : 
+              <select name="ear">
+			    <option value="1">1</option>
+			    <option value="2">2</option>
+			    <option value="3">3</option>
+			    <option value="4">4</option>
+			    <option value="5">5</option>
+			  </select>
+              </label>
+              <input type="email" name="ear_script" class="form-control" id="InputEmail" placeholder="자세히 쓰세요.">
+            </div>
+            
+            <div class="form-group">
+              <label for="InputEmail">눈꼽의 양은 적은가요? : 
+              <select name="eye">
+			    <option value="1">1</option>
+			    <option value="2">2</option>
+			    <option value="3">3</option>
+			    <option value="4">4</option>
+			    <option value="5">5</option>
+			  </select>
+              </label>
+              <input type="email" name="eye_script" class="form-control" id="InputEmail" placeholder="자세히 쓰세요.">
+            </div>
+            
+            <div class="form-group">
+              <label for="InputEmail">치아와 항문의 상태는 깨끗한가요? : 
+              <select name="teeth">
+			    <option value="1">1</option>
+			    <option value="2">2</option>
+			    <option value="3">3</option>
+			    <option value="4">4</option>
+			    <option value="5">5</option>
+			  </select>
+              </label>
+              <input type="email" name="teeth_script" class="form-control" id="InputEmail" placeholder="자세히 쓰세요.">
+            </div>
+            
+            <div class="form-group">
+              <label for="InputEmail">피부와 발바닥에 상처나 염증 혹은 습진이 없나요? : 
+              <select name="skin">
+			    <option value="1">1</option>
+			    <option value="2">2</option>
+			    <option value="3">3</option>
+			    <option value="4">4</option>
+			    <option value="5">5</option>
+			  </select>
+              </label>
+              <input type="email" name="skin_script" class="form-control" id="InputEmail" placeholder="자세히 쓰세요.">
+            </div>
+            
+            <div class="form-group">
+              <label for="InputEmail">첫 소변과 대변의 상태는 건강한가요? : 
+              <select name="dung">
+			    <option value="1">1</option>
+			    <option value="2">2</option>
+			    <option value="3">3</option>
+			    <option value="4">4</option>
+			    <option value="5">5</option>
+			  </select>
+              </label>
+              <input type="email" name="dung_script" class="form-control" id="InputEmail" placeholder="자세히 쓰세요.">
+            </div>
+            
+            <table>
+			<tr>
+			<td><label for="InputEmail">1 : 매우 그렇지 않다. </label></td>
+			<td><label for="InputEmail">2 : 그렇지 않다. </label></td>
+			</tr>
+			<tr>
+			<td><label for="InputEmail">3 : 보통이다.</label></td>
+			<td><label for="InputEmail">4 : 그렇다.</label></td>
+			</tr>
+			<tr>
+			<td><label for="InputEmail">5 : 매우 그렇다.</label></td>
+			<td></td>
+			</tr>
+			</table>
+            <input type="hidden" id="id" name="id" value="">
+            <input type="hidden" name="pet_id" value="">
+            <div class="form-group text-center">
+            	
+              <button type="button" class="btn btn-info" onclick="javascript:checking()">일지 작성<i class="fa fa-check spaceLeft"></i></button>
+  				
+              <button type="button" class="btn btn-warning" onclick="location.href='/priends/WebContent/select.jsp'">작성 취소</button>
+            </div>
+          </form>
+        </div>
+
+      </article>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    
+
+    
+  </body>
+</html>
